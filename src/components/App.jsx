@@ -12,12 +12,25 @@ function App() {
         });
 
     }
+    function deleteNote(id) {
+        setNotes(notes => {
+            return notes.filter((note, index) => { return index != id })
+        })
+
+
+    }
     return (
         <div>
             <Header />
             <CreateArea addOn={addNote} />
             {notes.map((note, index) => {
-                return (<Note key={index} id={index} title={note.title} content={note.content} />)
+                return (
+                    <Note key={index}
+                        id={index}
+                        title={note.title}
+                        content={note.content}
+                        onDelete={deleteNote}
+                    />)
 
             })}
 
